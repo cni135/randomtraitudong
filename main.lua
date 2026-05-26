@@ -1,4 +1,4 @@
--- AUTO PIRATES + AUTO RANDOM + AUTO DROP FRUIT
+-- AUTO RANDOM + AUTO DROP FRUIT
 
 repeat task.wait() until game:IsLoaded()
 
@@ -32,66 +32,6 @@ button.MouseButton1Click:Connect(function()
         button.Text = "AUTO DROP : ON"
     else
         button.Text = "AUTO DROP : OFF"
-    end
-end)
-
--- =========================
--- AUTO CHOOSE PIRATES
--- =========================
-task.spawn(function()
-
-    while true do
-        task.wait(1)
-
-        pcall(function()
-
-            local gui = player.PlayerGui
-
-            if gui:FindFirstChild("Main") then
-
-                local main = gui.Main
-
-                if main:FindFirstChild("ChooseTeam") then
-
-                    local choose = main.ChooseTeam
-
-                    if choose.Visible then
-
-                        for _,v in pairs(choose:GetDescendants()) do
-
-                            if v:IsA("TextButton")
-                            and string.find(v.Text,"Pirates") then
-
-                                firesignal(v.MouseButton1Click)
-                            end
-                        end
-                    end
-                end
-            end
-        end)
-    end
-end)
-
--- =========================
--- REMOVE SPIN EFFECT
--- =========================
-task.spawn(function()
-
-    while true do
-        task.wait(1)
-
-        pcall(function()
-
-            for _,v in pairs(game:GetDescendants()) do
-
-                if v:IsA("BlurEffect")
-                or v:IsA("ColorCorrectionEffect")
-                or v:IsA("SunRaysEffect") then
-
-                    v:Destroy()
-                end
-            end
-        end)
     end
 end)
 
