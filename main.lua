@@ -1,3 +1,46 @@
+-- AUTO FLY TO GACHA NPC SEA 2
+
+repeat task.wait() until game:IsLoaded()
+
+local TweenService = game:GetService("TweenService")
+local player = game.Players.LocalPlayer
+
+-- SEA 2 CAFE GACHA POSITION
+local Pos = Vector3.new(
+    -386.3,
+    73.0,
+    297.3
+)
+
+function TweenTP(pos)
+
+    local char = player.Character
+    local hrp = char and char:FindFirstChild("HumanoidRootPart")
+
+    if hrp then
+
+        local dist =
+            (hrp.Position - pos).Magnitude
+
+        local speed = 300
+
+        local tween = TweenService:Create(
+            hrp,
+            TweenInfo.new(
+                dist/speed,
+                Enum.EasingStyle.Linear
+            ),
+            {
+                CFrame = CFrame.new(pos)
+            }
+        )
+
+        tween:Play()
+        tween.Completed:Wait()
+    end
+end
+
+TweenTP(Pos)
 -- AUTO RANDOM + AUTO DROP FRUIT
 
 repeat task.wait() until game:IsLoaded()
