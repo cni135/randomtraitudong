@@ -45,10 +45,6 @@ task.spawn(function()
     end
 end)
 -- SEA 2 CAFE GACHA POSITION
-task.spawn(function()
-
-    while true do
-        task.wait(2)
 local Pos = Vector3.new(
     -386.3,
     350.0,
