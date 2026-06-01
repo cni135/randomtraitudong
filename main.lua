@@ -4,12 +4,51 @@ repeat task.wait() until game:IsLoaded()
 
 local TweenService = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
+local VirtualInputManager = game:GetService("VirtualInputManager")
 
+task.spawn(function()
+    while true do
+
+        -- Ô 2
+        VirtualInputManager:SendKeyEvent(
+            true,
+            Enum.KeyCode.Two,
+            false,
+            game
+        )
+
+        VirtualInputManager:SendKeyEvent(
+            false,
+            Enum.KeyCode.Two,
+            false,
+            game
+        )
+
+        task.wait(0.5)
+
+        -- Ô 3
+        VirtualInputManager:SendKeyEvent(
+            true,
+            Enum.KeyCode.Three,
+            false,
+            game
+        )
+
+        VirtualInputManager:SendKeyEvent(
+            false,
+            Enum.KeyCode.Three,
+            false,
+            game
+        )
+
+        task.wait(0.5)
+    end
+end)
 -- SEA 2 CAFE GACHA POSITION
 local Pos = Vector3.new(
     -386.3,
-    73.0,
-    297.3
+    350.0,
+    455.3
 )
 
 function TweenTP(pos)
@@ -43,14 +82,8 @@ end
 TweenTP(Pos)
 -- AUTO RANDOM + AUTO DROP FRUIT
 
-repeat task.wait() until game:IsLoaded()
+local enabled = true
 
-local player = game.Players.LocalPlayer
-local enabled = false
-
--- =========================
--- UI
--- =========================
 local gui = Instance.new("ScreenGui")
 gui.Parent = game.CoreGui
 
@@ -65,7 +98,7 @@ button.TextColor3 = Color3.fromRGB(255,255,255)
 button.TextSize = 20
 button.Font = Enum.Font.SourceSansBold
 
-button.Text = "AUTO DROP : OFF"
+button.Text = "AUTO DROP : ON"
 
 button.MouseButton1Click:Connect(function()
 
@@ -77,7 +110,6 @@ button.MouseButton1Click:Connect(function()
         button.Text = "AUTO DROP : OFF"
     end
 end)
-
 -- =========================
 -- AUTO RANDOM FRUIT
 -- =========================
