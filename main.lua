@@ -49,8 +49,6 @@ task.spawn(function()
 
     while true do
         task.wait(2)
-
-        pcall(function()
 local Pos = Vector3.new(
     -386.3,
     350.0,
