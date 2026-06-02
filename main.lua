@@ -8,7 +8,7 @@ local player = game.Players.LocalPlayer
 
 local Pos = Vector3.new(
     -450.3,
-    73.0,
+    92.0,
     400.3
 )
 
