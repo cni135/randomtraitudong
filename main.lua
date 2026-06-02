@@ -9,7 +9,7 @@ local player = game.Players.LocalPlayer
 local Pos = Vector3.new(
     -386.3,
     73.0,
-    297.3
+    300.3
 )
 
 local function TweenTP(pos)
