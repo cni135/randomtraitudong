@@ -7,9 +7,9 @@ local TweenService = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
 
 local Pos = Vector3.new(
-    -386.3,
+    -450.3,
     73.0,
-    300.3
+    400.3
 )
 
 local function TweenTP(pos)
