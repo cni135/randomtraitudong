@@ -1,84 +1,68 @@
--- AUTO FLY TO GACHA NPC SEA 2
-
+-- CHỌN PHE XONG MỚI BAY TỚI GACHA SEA 2
+local player = game.Players.LocalPlayer
+local VirtualInputManager = game:GetService("VirtualInputManager")
 repeat task.wait() until game:IsLoaded()
 
 local TweenService = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
-local VirtualInputManager = game:GetService("VirtualInputManager")
 
-task.spawn(function()
-    while true do
-
-        -- Ô 2
-        VirtualInputManager:SendKeyEvent(
-            true,
-            Enum.KeyCode.Two,
-            false,
-            game
-        )
-
-        VirtualInputManager:SendKeyEvent(
-            false,
-            Enum.KeyCode.Two,
-            false,
-            game
-        )
-
-        task.wait(0.5)
-
-        -- Ô 3
-        VirtualInputManager:SendKeyEvent(
-            true,
-            Enum.KeyCode.Three,
-            false,
-            game
-        )
-
-        VirtualInputManager:SendKeyEvent(
-            false,
-            Enum.KeyCode.Three,
-            false,
-            game
-        )
-
-        task.wait(0.5)
-    end
-end)
--- SEA 2 CAFE GACHA POSITION
 local Pos = Vector3.new(
     -386.3,
-    350.0,
-    455.3
+    73.0,
+    297.3
 )
 
-function TweenTP(pos)
-
+local function TweenTP(pos)
     local char = player.Character
     local hrp = char and char:FindFirstChild("HumanoidRootPart")
 
-    if hrp then
-
-        local dist =
-            (hrp.Position - pos).Magnitude
-
-        local speed = 300
-
-        local tween = TweenService:Create(
-            hrp,
-            TweenInfo.new(
-                dist/speed,
-                Enum.EasingStyle.Linear
-            ),
-            {
-                CFrame = CFrame.new(pos)
-            }
-        )
-
-        tween:Play()
-        tween.Completed:Wait()
+    if not hrp then
+        return
     end
+
+    local dist = (hrp.Position - pos).Magnitude
+    local speed = 300
+
+    local tween = TweenService:Create(
+        hrp,
+        TweenInfo.new(
+            dist / speed,
+            Enum.EasingStyle.Linear
+        ),
+        {
+            CFrame = CFrame.new(pos)
+        }
+    )
+
+    tween:Play()
+    tween.Completed:Wait()
 end
 
+-- Đợi chọn phe và spawn nhân vật
+repeat
+    task.wait(1)
+until player.Character
+    and player.Character:FindFirstChild("HumanoidRootPart")
+    and player.Character:FindFirstChild("Humanoid")
+    and player.Character.Humanoid.Health > 0
+
+task.wait(1) -- chờ map load thêm
+
+TweenTP(Pos)
+
+-- AUTO RANDOM FRUIT
+task.spawn(function()
+    while true do
+        task.wait(0.5)
+
+        pcall(function()
+            game:GetService("ReplicatedStorage")
+                .Remotes
+                .CommF_
+                :InvokeServer("Cousin","Buy")
+        end)
+    end
+end)
 TweenTP(Pos)
 -- AUTO RANDOM + AUTO DROP FRUIT
 
@@ -116,7 +100,7 @@ end)
 task.spawn(function()
 
     while true do
-        task.wait(2)
+        task.wait(0.5)
 
         pcall(function()
 
@@ -136,7 +120,7 @@ end)
 task.spawn(function()
 
     while true do
-        task.wait(0.2)
+        task.wait(0.1)
 
         if enabled then
 
